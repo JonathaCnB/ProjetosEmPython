@@ -1,4 +1,6 @@
 import random
+import PySimpleGUI as sg
+import time
 
 class decida_por_mim:
     def __init__(self):
@@ -6,16 +8,22 @@ class decida_por_mim:
         self.resp_continue = ' '
 
     def Iniciar(self):
+        # Layout
+        layout = [
+            [sg.Text('Faça sua pergunta: ')],
+            [sg.Input()],
+            [sg.Output(size=(20, 10))],
+            [sg.Button('Decida')], [sg.Button('Sair')]
+        ]
+        # Criar Janela
+        self.janela = sg.Window('Decida!',layout=layout)
         while True:
-            input('Faça sua pergunta: ')
-            print(random.choice(self.respostas))
-            resp_continue = input('Deseja fazer outra pergunta? [S/N]')
-            if resp_continue in 'nN':
-                break
-            while resp_continue not in 'sSnN':
-                resp_continue = input('Responda apenas S ou N: ')
-                if resp_continue in 'SsNn':
-                    break
+            # Ler o valores
+            self.eventos, self.valores, self.close = self.janela.Read()
+            if self.eventos == 'Decida':
+                print(random.choice(self.respostas))
+            if self.eventos == "Sair":
+                self.janela.Close()
 
 
 decida = decida_por_mim()
