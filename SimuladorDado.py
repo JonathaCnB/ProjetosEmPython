@@ -1,31 +1,32 @@
 # Simulador de Dado
 import random
+import PySimpleGUI as sg
 
 class SimuladorDeDados:
     def __init__(self):
         self.valor_minimo = 1
         self.valor_maximo = 6
-        self.mensagem = 'Você gostaria de jogar novamente? [S/N] '
+        #self.mensagem = 'Você gostaria de jogar novamente? [S/N] '
+        self.layout = [
+            [sg.Text('Jogar o dado?')],
+            [sg.Button('Sim'), sg.Button('Não')]
+        ]
 
     def Iniciar(self):
-        resposta = input(self.mensagem)
-        while True:
-            try:
-                if resposta in 's' or resposta in 'sim':
-                    self.GerarValorDoDado()
-                elif resposta == 'não' or resposta == 'n':
-                    print('Agradecemos a sua participação!')
-                    # break
-                else:
-                    print('Favor digitar S ou N')
-            except:
-                print('Ocorreu um erro ao receber sua resposta!')
-            respuser = input(self.mensagem)
-            if respuser in 'nN':
-                break
-            while respuser not in 'SsNn':
-                print('Favor digitar S! ou N')
-                respuser = input(self.mensagem)
+        # Cria uma janela
+        self.janela = sg.Window('Simular de Dado', layout=self.layout)
+        # Ler os valores
+        self.eventos, self.valores = self.janela.Read()
+        # Fazer alguma coisa com esses valores
+        try:
+            if self.eventos == 'Sim' or self.eventos == 's':
+                self.GerarValorDoDado()
+            elif self.eventos == 'Não' or self.eventos == 'n':
+                print('Agradecemos a sua participação!')
+            else:
+                print('Por favor digitar Sim ou Não')
+        except:
+            print('Ocorreu um erro ao receber sua resposta')
 
     def GerarValorDoDado(self):
         print(random.randint(self.valor_minimo, self.valor_maximo))
