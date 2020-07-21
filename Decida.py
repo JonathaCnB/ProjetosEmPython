@@ -13,17 +13,15 @@ class decida_por_mim:
             [sg.Text('Faça sua pergunta: ')],
             [sg.Input()],
             [sg.Output(size=(20, 10))],
-            [sg.Button('Decida')], [sg.Button('Sair')]
+            [sg.Button('Decida')], [sg.CloseButton('Sair')]
         ]
         # Criar Janela
         self.janela = sg.Window('Decida!',layout=layout)
         while True:
             # Ler o valores
-            self.eventos, self.valores, self.close = self.janela.Read()
+            self.eventos, self.valores = self.janela.Read()
             if self.eventos == 'Decida':
                 print(random.choice(self.respostas))
-            if self.eventos == "Sair":
-                self.janela.Close()
 
 
 decida = decida_por_mim()
