@@ -16,17 +16,19 @@ class SimuladorDeDados:
         # Cria uma janela
         self.janela = sg.Window('Simular de Dado', layout=self.layout)
         # Ler os valores
-        self.eventos, self.valores = self.janela.Read()
-        # Fazer alguma coisa com esses valores
-        try:
-            if self.eventos == 'Sim' or self.eventos == 's':
-                self.GerarValorDoDado()
-            elif self.eventos == 'Não' or self.eventos == 'n':
-                print('Agradecemos a sua participação!')
-            else:
-                print('Por favor digitar Sim ou Não')
-        except:
-            print('Ocorreu um erro ao receber sua resposta')
+        while True:
+            self.eventos, self.valores = self.janela.Read()
+            # Fazer alguma coisa com esses valores
+            try:
+                if self.eventos == 'Sim' or self.eventos == 's':
+                    self.GerarValorDoDado()
+                elif self.eventos == 'Não' or self.eventos == 'n':
+                    print('Agradecemos a sua participação!')
+                    break
+                else:
+                    print('Por favor digitar Sim ou Não')
+            except:
+                print('Ocorreu um erro ao receber sua resposta')
 
     def GerarValorDoDado(self):
         print(random.randint(self.valor_minimo, self.valor_maximo))
