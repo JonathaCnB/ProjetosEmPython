@@ -15,8 +15,9 @@ class SimuladorDeDados:
     def Iniciar(self):
         # Cria uma janela
         self.janela = sg.Window('Simular de Dado', layout=self.layout)
-        # Ler os valores
+       # instrucao para continuidade
         while True:
+            # Ler os valores
             self.eventos, self.valores = self.janela.Read()
             # Fazer alguma coisa com esses valores
             try:
