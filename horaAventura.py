@@ -118,3 +118,22 @@ while True:
         window['Submit'].update(disabled=True)
         window['Reset'].update(disabled=False)
         recording = False
+
+
+
+
+layout = [[sg.Text('My To Do List', font='Helvetica 15')]]
+layout += [[sg.Text(f'{i}. '), sg.CBox(''), sg.Input()] for i in range(1, 6)]
+layout += [[sg.Button('Save'), sg.Button('Load'), sg.Button('Exit')]]
+
+window = sg.Window('To Do List Example', layout)
+
+while True:
+    event, values = window.read()
+    if event in (None, 'Exit'):
+        break
+    elif event == "Save":
+        window.save_to_disk('mywindow.out')
+    elif event == "Load":
+        window.load_from_disk('mywindow.out')
+window.close()
