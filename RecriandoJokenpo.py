@@ -12,8 +12,7 @@ layout = [[sg.Text('Vamos Jogar?', font=('Helvetica', '30'), background_color='w
           [sg.T(key='Resultado1', size=(17, 1), font=('Helvetica', '25'), justification='left')],
           [sg.Button('Sair', button_color=('white', 'black'), key='Sair', size=(7, 2), pad=(3, 1))]]
 
-window = sg.Window("Jokenpo", layout, default_element_size=(40,1), text_justification='r', auto_size_text=False, auto_size_buttons=False,
-                   default_button_element_size=(40, 1), finalize=True, size=(360, 400))
+window = sg.Window("Jokenpo", layout, finalize=True, size=(360, 400))
 
 regra = ["Pedra", "Papel", "Tesoura", "Papel", "Tesoura", "Pedra"]
 npc = ch(regra)
